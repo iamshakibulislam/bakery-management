@@ -1,0 +1,630 @@
+ 
+{% load static %}
+
+
+<head>
+<title>mina bakery</title>
+<meta charset="UTF-8">
+
+
+
+
+
+
+
+
+
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script type="text/javascript" src="{% static 'js/javascript.js' %}"> </script>
+<script src="http://localhost/bloging/javascript.js"></script>
+
+<script src="https://use.fontawesome.com/d2ec2f3c57.js"></script>
+</head>
+<!------ Include the above in your HEAD tag ---------->
+<body>
+</script>
+
+
+<nav class="navbar navbar-default bg-primary">
+	<div class=" container-fluid">
+		<div class="row">
+			<div class="col-md-12 d-flex">
+
+
+	<div class="navbar-header">
+		<a href="#" class="navbar-brand">মিনা বেকারি</a>
+
+	</div>
+
+
+	<ul class="nav navbar-nav" style="float:right">
+		
+		
+		<li><a href="#">Login</a></li>
+		<li><a href="#">Signup</a></li>
+		<li><a href="#">Contact us</a></li>
+		<li><a href="#">About us</a></li>
+	</ul></div>
+</div>
+</div>
+	
+</nav>
+
+
+
+
+
+<!-- sidebar starts here-->
+
+<nav class="navbar navbar-default sidebar font-weight-bold" role="navigation">
+    <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+		</div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+				
+				<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Raw materials  <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity "></span>   <i class="text-secondary fa fa-truck fa-lg" aria-hidden="true" style="float:right"></i></a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="#" data-toggle="modal" data-target="#add_raw_material">Register new  <i class="fa fa-plus-square fa-lg" style="float:right" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+
+						<li><a href="raw_material_list.html">কাচা মালের তালিকা  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						
+						<li class="divider"></li>
+						<li><a href="add_raw_material_to_stock.html">Add to stock <i class="fa fa-server fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+
+						<li class="divider"></li>
+						<li><a href="raw_material_stock_history.html">Stock history  <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+						
+						
+						
+						
+					</ul>
+					<!--production dropdown menu section-->
+					<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Production <span class="caret"></span>
+					<span style="font-size:16px;" class="pull-right hidden-xs showopacity "></span>
+
+					<i class="fa fa-industry fa-lg" aria-hidden="true"></i>
+
+
+					</a>
+					<ul class="dropdown-menu forAnimate" role="menu">
+						<li><a href="#" data-toggle="modal" data-target="#register-product">Register product   <i class="fa fa-plus-square fa-lg" style="float:right" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="product_list.html">Product List  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="product-stock.html">product stock  <i class="fa fa-server fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="product_stock_history.html">Stock history <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i>    </a></li>
+						<li class="divider"></li>
+						
+						
+						
+					</ul>
+					<!-- end of production menu-->
+
+
+					<!-- sell area starts here -->
+					<li class="dropdown active" >
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales Area <span class="caret"></span>  <i class="fa fa-balance-scale fa-lg" aria-hidden="true"></i></a>
+					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+						<li><a href="#" data-toggle="modal" data-target="#add_saleman">Add Saleman <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="saleman_list.html">Saleman list  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="sell_to_salesman.html">Sell to salesman  <i class="fa fa-sellsy fa-lg" aria-hidden="true"></i></a></li> 
+						<li class="divider"></li>
+						<li><a href="retail_sales.html">retail sales  <i class="fa fa-users fa-lg" aria-hidden="true"></i></a></li> 
+						<li class="divider"></li>
+						<li><a href="retail_sales_status.html">Retail status  <img style="float:right;" src="{% static 'img/shopping_trolley.png' %}" height="30 px" width="30px"/></a></li>
+						
+						
+						
+					</ul>
+
+					<!--sell area ends here-->
+
+					<!--employee starts here-->
+					<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee Area <span class="caret"></span>  
+					<i class="fa fa-child fa-lg" aria-hidden="true"></i> </a>
+					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+						<li><a href="#" data-toggle="modal" data-target="#employee_register">Register Employee  <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="employee_list.html">Employee list   <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="employee_attendence.html">Employee Attendence <i class="fa fa-calendar-check-o fa-lg"></i></a></li> 
+						
+
+
+					</ul>
+						
+
+
+
+					<!--employee ends there-->
+
+					<!-- external production costs starts here-->
+					<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">External Cost <span class="caret"></span>   <i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
+					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+						<li><a href="#" data-toggle="modal" data-target="#add_external_cost">Add New Cost    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="external_cost_list.html">Cost list    <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="#" data-toggle="modal" data-target="#expense_external_cost">Expense item    <i class="fa fa-minus-square fa-lg"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="external_stock_list.html">Stock Items   <i class="fa fa-archive fa-lg" aria-hidden="true"></i></a></li> 
+						<li class="divider"></li>
+						<li><a href="external_stock_history.html">stock history   <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+					</ul>
+
+						<!--external production cost ends there-->
+
+
+						<!-- others cost starts here-->
+					<li class="dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Extra cost <span class="caret"></span> <i class="fa fa-money fa-lg" aria-hidden="true"></i></a>
+					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+						<li><a href="#" data-toggle="modal" data-target="#cost_modal">Add new  <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
+						<li class="divider"></li>
+						<li><a href="cost_history.html">Cost history <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+						<li class="divider"></li>
+					</ul>
+						
+						<!-- extra cost ends here-->
+
+
+
+
+
+
+
+
+				
+				
+		</div>
+	</div>
+</nav>
+<!------------------------------modal areas--------------------------------------------------------------------------->
+
+<!-- modals starts here-->
+<!-- add raw materials modal-->
+<div id="add_raw_material" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Add New Raw Material Item</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Material Name:</label>
+  <input type="text" class="form-control" autocomplete="off" id="raw_material_name_input" style="width:50%">
+   <label for="usr">price/kg:</label>
+    <input type="number" class="form-control" id="raw_material_price_input" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+
+  <button  class="form-control btn btn-success" id="raw_material_submit_button" >Add Item</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--end of add raw materials modal-->
+
+<!------------------------------------------------------------------>
+
+<!-- modal for product register --->
+
+
+
+<div id="register-product" class="modal fade" role="dialog" >
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content" >
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Register New Product</h4>
+      </div>
+      <div class="modal-body" style="height:auto;">
+
+      	
+
+       <div class="form-inline">
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Product Name:</label>
+  <input type="text" class="form-control" id="product_name" style="width:50%">
+   <label for="usr">price/pack:</label>
+    <input type="number" class="form-control" id="product_price" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+<!--for adding multiple raw-material to actual product-->
+<div class="form-inline">
+	<div class="form-group" style="margin-top:14px">
+		<label for="usr" style="margin-left: 40px">material:</label>
+		<input type="text" class="form-control" name="material-for-product" list="material_list">
+		<datalist id="material_list">
+			<option value="data1">
+			<option value="data2">
+			
+		</datalist>
+		<img id="register_product_page" src="{% static 'img/downarrow.png' %}" height="30" width="30" style="margin-left: 10px;">
+	</div>
+
+</div>
+<!--end of th above comment of multiple raw material-->
+
+<!--temporary table starts here-->
+
+<table class="table table-bordered table-hover" style="background-color: white;">
+			    <thead>
+			      <tr>
+			        <th>material name</th>
+			        <th style="width: 80px">quantity(gm)</th>
+			        <th style="width:120px">action</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td>John</td>
+			        <td><input type="number" class="form-control" style="height:30px;margin:0px;padding: 0px"></td>
+			        <td><a href="#">        <a href=""> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></td>
+			      </tr>
+			      <tr>
+			        <td>John</td>
+			        <td><input type="number" class="form-control" style="height:30px;margin:0px;padding: 0px"></td>
+			        <td><a href="#">        <a href=""> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></td>
+			      </tr>
+			      <tr>
+			        <td>John</td>
+			        <td><input type="number" class="form-control" style="height:30px;margin:0px;padding: 0px"></td>
+			        <td><a href="#">        <a href=""> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></td>
+			      </tr>
+			     
+			      
+			      
+
+
+
+
+
+			    </tbody>
+			  </table>
+
+
+
+
+<!--temporary table ends there-->
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer" style="margin:0px">
+       <div class="form-group">
+  
+  <button type="submit" class="form-control btn btn-success" id="submit">Add Product</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!--end of product register modal--->
+
+
+
+<!--starts  of saleman add++ modal from here-->
+
+
+<div id="add_saleman" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Add New Saleman</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Name:</label>
+  <input type="text" class="form-control" id="saleman_name" style="width:50%">
+   <label for="usr">commision(%):</label>
+    <input type="number" class="form-control" id="commision" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+  
+  <button type="submit" class="form-control btn btn-success" id="submit">Add Saleman</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!--saleman add  modal ends here-->
+
+
+
+
+
+
+<!-----------employee register modal starts here--------------------->
+
+<!-- add raw materials modal-->
+<div id="employee_register" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Add New Employee</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Name:</label>
+  <input type="text" class="form-control" id="employee_name" autocomplete="off" style="width:50%">
+   <label for="usr" style="margin-left: 40px">Salery:</label>
+    <input type="number" class="form-control" id="salary" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+  
+  <button type="submit" class="form-control btn btn-success" id="submit">Add Employee</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<!-----------employee register modal ends here------------------------>
+
+
+
+
+<!-------------external cost modal starts here---------------------->
+
+
+
+
+<!-- modals starts here-->
+
+<div id="add_external_cost" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Add New External Cost</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Cost Name:</label>
+  <input type="text" class="form-control" id="external_cost_name" style="width:50%">
+   <label for="usr">price/unit:</label>
+    <input type="number" class="form-control" id="external_cost_price" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+  
+  <button type="submit" class="form-control btn btn-success" id="submit">Add Item</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!------------external cost modal ends here------------------------->
+
+
+
+<!-------external cost expense(-) modal starts here------------------->
+
+
+
+<div id="expense_external_cost" class="modal fade " role="dialog" >
+  <div class="modal-dialog " style="width:50%" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title text-center">Expense external items</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Cost Name:</label>
+  <input type="text" class="form-control" id="expense_cost_name_input" autocomplete="off" list="expense_list" style="width:50%">
+  <datalist id="expense_list">
+  	<option value="item 1">
+  	<option value="item2">
+  	
+  </datalist>
+   <label for="usr">unit:</label>
+    <input type="number" class="form-control" id="extra_cost_price_input" style="width:90px">
+    <label for="usr"></label>
+    <button class="btn  btn-danger" type="submit" class="form-control" id="expense_submit">Expense</button>
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <!---modal footer---->
+      <div class="modal-footer">
+      </div>
+      <!---modal footer---->
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+<!---external  cost expense(-) modal ends here-------------------------->
+
+
+
+
+
+
+
+
+<!----------add new extra cost modal starts here--------------->
+
+
+<div id="cost_modal" class="modal fade " role="dialog" >
+  <div class="modal-dialog " style="width:50%" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title text-center">Extra cost</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Name:</label>
+  <input type="text" class="form-control" id="expense_cost_name" autocomplete="off"  style="width:50%">
+  
+   <label for="usr">cost(tk):</label>
+    <input type="number" class="form-control" id="extra_cost_price" style="width:90px">
+    <label for="usr"></label>
+    <button class="btn  btn-danger" type="submit" class="form-control" id="expense_submit_button">Add</button>
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <!---modal footer---->
+      <div class="modal-footer">
+      </div>
+      <!---modal footer---->
+    </div>
+
+  </div>
+</div>
+
+
+
+{% block content %}
+
+{% endblock content %}
+
+
+
+
+
+</body>

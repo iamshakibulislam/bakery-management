@@ -1,0 +1,176 @@
+
+
+
+
+
+
+<!--saleman list showing code here-->
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4 text-center  col-md-offset-2" >
+			<div class="well bg-dark" style="background-color: grey;color:white">Saleman list</div>
+			 <table class="table table-bordered table-hover" style="background-color: white;">
+			    <thead>
+			      <tr>
+			        <th>Name</th>
+			        <th style="width: 80px">commision</th>
+			        <th style="width:120px">action</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td>John</td>
+			        <td>12%</td>
+			        <td>
+
+
+						<a href="#" data-toggle="modal" data-target="#view_details"><img src="img/view_details.png" height="25px" width="25px"></a>
+			        	<a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
+			      </tr>
+			      
+			    </tbody>
+			  </table>
+
+
+
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+
+
+
+<!--saleman list showing code  ends here-->
+
+
+
+<!--------------------------------view details for saleman modal starts here ------------------------------------------->
+
+
+
+
+
+<div id="view_details" class="modal fade" role="dialog" style="height: auto" >
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content" >
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
+         <div class="row">
+         	<div class="col-md-6">
+        <h4 class="modal-title">Hasibul Islam</h4></br>
+        <h4 style="color:red">Total due:<span style="color:red;font-weight: bold;">19900</span> <span style="color: black">টাকা</span>
+
+        </h4>
+        <h4 style="color: red;float: left">Selected Due:<span style="font-weight: bold">1490</span> <span style="color: black">টাকা</span></h4>
+   			 </div>
+			<div class="col-md-6 " >
+
+				<span style="display: inline;margin-top: 40px;margin-right:-30px" class="form-inline">
+
+				
+
+
+				
+				<input type="number" style="width:100px;margin-left: 40px;margin-top: 40px" class="form-control"/>
+				<button type="button" class="btn btn-warning" style="margin-top: 40px" >জমা দিন</button>
+				</span>
+			</div>
+
+   			</div>
+
+      </div>
+      <div class="modal-body" style="height:auto;">
+
+      	
+
+   <div class="form-inline" style="margin: 0px">
+				<div class="form-group" style="margin:0px">
+				<label style="margin:0px" for="date">
+					From:
+
+				</label>
+				<input type="date" name="from" id="from" class="form-control" style="margin: 0px">
+				</div>
+				<div class="form-group">
+				<label for="date" style="margin-left: 14px">
+					To    
+
+				</label>
+				<input type="date" name="to" class="form-control " style="margin-left: 23px">
+				<button type="submit" class="btn btn-success text-center font-weight-bold" id="search">Search</button>
+
+
+			</div>
+			
+				
+			</div>
+
+
+
+<!--temporary table starts here-->
+
+<table class="table table-bordered table-hover" style="background-color: white;margin-top: 12px">
+			    <thead>
+			      <tr>
+			        <th>date</th>
+			        <th >product</th>
+			        <th style="width:90px">quantity</th>
+			        <th style="width:90px">value</th>
+			        <th style="width:120px">action</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td>02/01/2020</td>
+			        <td>can tos ggghhh g</td>
+			        <td>120</td>
+			        <td>137373</td>
+			        <td><a href="#">  <img src="img/edit.png" height="25px" width="25px"></a>  <a href=""> <img src="img/delete.png" height="25px" width="25px" /></a></td>
+			      </tr>
+			     
+			      
+
+
+
+
+
+			    </tbody>
+			  </table>
+
+
+
+
+<!--temporary table ends there-->
+
+
+        
+
+
+
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!---------------------------------view details for saleman modal ends here--------------------------------------------->
+
+
