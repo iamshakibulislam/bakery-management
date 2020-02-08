@@ -1,24 +1,30 @@
+{% extends 'base.html' %}
 
+{% load static %}
+{% block content %}
 
 <div class="container-fluid">
 
 	<div class="row">
 		<div class="col-md-7 col-md-offset-1">
-			<div class="well bg-dark text-center" style="background-color: grey;color:white"><font size="6"> Extra Items Stock</font></div>
+			<div class="well bg-dark text-center" style="background-color: grey;color:white"><font size="6"> Raw Material Stock</font></div>
 			<!-- start of raw material stock-->
 			<div class="form-inline ">
+				{% csrf_token %}
 
       	<div class="form-group text-light" style="display: inline;">
   <label  for="usr"><font color="white"><b>Material Name:</b></font></label>
-  <input type="text" class="form-control" id="material_name" list="datalist" style="width:50%">
+  <input type="text" autocomplete="off" class="form-control" id="material_name" list="data_item_list" style="width:50%">
 
-     <datalist id="datalist">
-     	<option value="data1">
-     	<option value="data2">
+     <datalist id="data_item_list">
+     	{% for item in item_list %}
+     	<option value="{{ item.item }}">
+     	{% endfor %}
+     	
      	
      </datalist>  
    <label for="usr"><font color="white"><b>quantity(unit):</b></font></label>
-    <input type="number" class="form-control" id="raw_material_price" style="width:90px">
+    <input type="number" class="form-control" id="raw_material_quantity" style="width:90px">
 </div>
 <label for="pwd"></label>
 <button type="button" class="btn btn-success" id="material_stock_button">Add</button>
@@ -31,30 +37,22 @@
 			    <thead>
 			      <tr>
 			        <th style="width:120px">Item</th>
-			        <th style="width: 80px">unit</th>
+			        <th style="width: 80px">quantity</th>
 			        <th style="width:80px">value</th>
 			        <th style="width:80px">action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="stock_items">
+			    	{% for stock_item in stock_list %}
 			      <tr>
-			        <td>John</td>
-			        <td>Doe</td>
-			        <td>8976</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a> </td>
+			        <td>{{stock_item.item.item}}</td>
+			        <td>{{stock_item.quantity}}</td>
+			        <td>{{stock_item.value}}</td>
+			        <td><rawstockedit><a href="#" data-toggle="modal" stock-id="{{stock_item.id}}" data-target="#editmodal"><img src="{% static 'img/edit.png' %}" height="25px" width="25px" ></a> </rawstockedit></td>
 			      </tr>
-			      <tr>
-			        <td>Mary</td>
-			        <td>Moe</td>
-			        <td>0987</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a> </td>
-			      </tr>
-			      <tr>
-			        <td>July</td>
-			        <td>Dooley</td>
-			        <td>8668</td>
-			      <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a></td>
-			      </tr>
+			      {% endfor %}
+			      
+			     
 			    </tbody>
 			  </table>
 
@@ -67,4 +65,52 @@
 </div>
 
 
+<!--edit modal area for update-->
+
+<div id="editmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" id="closerawmaterialupdatemodal" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Update Stock</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+       	{% csrf_token %}
+
+      	<div class="form-group " style="display: inline">
+      		<label for="usr">item:</label>
+  <input type="text" class="form-control" autocomplete="off" id="stock_item" style="width:40%" disabled="true" />
+  <label for="usr">quantity:</label>
+  <input type="number" class="form-control" autocomplete="off" id="stock_quantity" style="width:91px">
+   <label for="usr">value:</label>
+    <input type="number" class="form-control" id="stock_value" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+      	<input type="hidden" name="id_stock" value="">
+       <div class="form-group">
+       	<input type="hidden" name="id_material" value="">
+
+  <button  class="form-control btn btn-success" id="stock_update_button" >Update</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock content %}
 

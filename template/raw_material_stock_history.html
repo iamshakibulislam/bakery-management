@@ -1,10 +1,13 @@
+{% extends 'base.html' %}
 
+{% block content %}
 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3   col-md-offset-2" >
 			<div class="well bg-dark" style="background-color: grey;color:white;text-align: center;">Raw Material Stock History</div>
-			<form class="form-inline" style="margin: 0px">
+			<div class="form-inline" style="margin: 0px">
+				{% csrf_token %}
 				<div class="form-group" style="margin:0px">
 				<label style="margin:0px" for="date">
 					From:
@@ -17,14 +20,14 @@
 					To    
 
 				</label>
-				<input type="date" name="to" class="form-control " style="margin-left: 23px">
-				<button type="submit" class="btn btn-success text-center font-weight-bold" id="search">Search</button>
+				<input type="date" name="to" class="form-control" id="to" style="margin-left: 23px">
+				<button type="submit" class="btn btn-success text-center font-weight-bold" id="searchbutton">Search</button>
 
 
 			</div>
 			
 				
-			</form>
+			</div>
 
 
 
@@ -39,22 +42,15 @@
 			        <th style="width:80px">quantity(kg)</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="stock_history_list">
+			    	{% for h in history %}
 			      <tr>
-			        <td>11-12-20</td>
-			        <td>ata</td>
-			        <td>26</td>
+			        <td>{{h.date}}</td>
+			        <td>{{h.item.item}}</td>
+			        <td>{{h.quantity}}</td>
 			      </tr>
-			      <tr>
-			        <td>22-12-20</td>
-			        <td>moyda</td>
-			        <td>50</td>
-			      </tr>
-			      <tr>
-			        <td>04-12-20</td>
-			        <td>bakin soda </td>
-			      <td>09</td>
-			      </tr>
+			      {% endfor %}
+			      
 			    </tbody>
 			  </table>
 
@@ -68,7 +64,7 @@
 </div>
 
 
-
+{%endblock content%}
 
 
 

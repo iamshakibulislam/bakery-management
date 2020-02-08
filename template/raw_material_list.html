@@ -1,7 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
 
 
-
-
+{% load static %}
 
 
 
@@ -22,22 +23,23 @@
 			        <th style="width:120px">action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="raw_material_list_table">
+			    	{% for raw_material in raw_materials %}
 			      <tr>
-			        <td>John</td>
-			        <td>Doe</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
+			        <td>{{raw_material.item}}</td>
+			        <td>{{raw_material.price}}</td>
+			        <td><editandup>
+			        	<a href="#" class="up"  material-id="{{raw_material.id}}" data-toggle="modal" data-target="#update_raw_material"><img src="{% static 'img/edit.png' %}" height="25px" width="25px" ></a>
+			            </editandup>
+			        	<rawdel>
+			        		<a  href="#" class="del" material-id="{{raw_material.id}}"> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" />
+			        		</a>
+			        	</rawdel>
+			        	
+			        </td>
 			      </tr>
-			      <tr>
-			        <td>Mary</td>
-			        <td>Moe</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
-			      </tr>
-			      <tr>
-			        <td>July</td>
-			        <td>Dooley</td>
-			      <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
-			      </tr>
+			      {% endfor %}
+			      
 			    </tbody>
 			  </table>
 
@@ -50,6 +52,54 @@
 
 </div>
 
+
+
+<!---modal for update raw_material list-->
+
+<div id="update_raw_material" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" id="closerawmaterialupdatemodal" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Update Rawmaterial</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+       	{% csrf_token %}
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Material Name:</label>
+  <input type="text" class="form-control" autocomplete="off" id="raw_material_name_update" style="width:50%">
+   <label for="usr">price/kg:</label>
+    <input type="number" class="form-control" id="raw_material_price_update" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+       	<input type="hidden" name="id_material" value="">
+
+  <button  class="form-control btn btn-success" id="raw_material_update_button" >Update</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!--end of the  modal update raw_material_list-->
+{% endblock content %}
 
 
 
