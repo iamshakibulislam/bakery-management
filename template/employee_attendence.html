@@ -1,11 +1,11 @@
+{% extends 'base.html' %}
 
 
 
 
 
 
-
-
+{% block content %}
 
 <!------------tmp-------->
 
@@ -22,16 +22,21 @@
 			       
 			      </tr>
 			    </thead>
+			    
 			    <tbody>
+			    	{% for emp in attend %}
 			      <tr>
-			        <td>John</td>
-			        <td>
-			        	<!--<div class="checkbox" style="margin:0px;padding: 0px">-->
- 							 <label ><input type="checkbox" value="name" style="width: 30px;height: 30px;margin:0px;padding: 0px" ></label>
-						<!--</div>-->
-			        </td>
+			        <td>{{emp.name}}</td>
+			         
+			         <td>
+ 					 <label ><input type="checkbox" class="attendence" value="{{emp.id}}" name="presence" style="width: 30px;height: 30px;margin:0px;padding: 0px" {% if emp.status == "yes" %} checked {% endif %}>
+ 					 </label>
+ 					 </td>
+					
+			        
 			        
 			      </tr>
+			      {% endfor %}
 			    
 			    </tbody>
 			  </table>
@@ -50,6 +55,7 @@
 
 
 
-<!---------------------employee list ends here------------------------------------->
+<!--employee list ends here-->
 
 
+{% endblock content %}

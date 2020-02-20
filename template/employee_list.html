@@ -1,10 +1,11 @@
- 
-<!------------------------------------------------------------------------------------------->
-
-<!-------------------employee  list starts here--------------------------------->
+ {% extends 'base.html' %}
+ {% load static %}
 
 
+<!--employee  list starts here-->
 
+
+{% block content %}
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4 text-center  col-md-offset-2" >
@@ -17,15 +18,18 @@
 			        <th style="width:120px">action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="employee_list">
+			    	{% for employee in employee %}
 			      <tr>
-			        <td>John</td>
-			        <td>94848</td>
+			        <td>{{employee.name}}</td>
+			        <td>{{employee.salary}}</td>
 			        <td>
-			        	<a href="#" data-toggle="modal" data-target="#view_details_employee"><img src="img/view_details.png" height="25px" width="25px"></a>
-			         <a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
+			        	<empdetails><a href="#" employee-id="{{employee.id}}" data-toggle="modal" data-target="#view_details_employee"><img src= " {% static 'img/view_details.png' %}" height="25px" width="25px"></a></empdetails>
+			          <empedit><a href="#" data-toggle="modal" employee-id="{{employee.id}}" data-target="#update_employee">
+			         	<img src="{% static 'img/edit.png' %}" height="25px" width="25px" ></a> </empedit>      
+			         	 <empdel><a href="#" employee-id="{{employee.id}}"> <img src=" {% static 'img/delete.png' %}" height="25x" width="25px" /></a></empdel></td>
 			      </tr>
-			    
+			    {% endfor %}
 			    </tbody>
 			  </table>
 
@@ -43,11 +47,57 @@
 
 
 
-<!---------------------employee list ends here------------------------------------->
+<!---------------------employee list ends here------------>
+<!-- employee update modal starts here-->
 
 
 
-<!-----employee modal starts form here------------------------------------------------------------->
+<div id="update_employee" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" id="closerawmaterialupdatemodal" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Update Employee</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+       	{% csrf_token %}
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Employee Name:</label>
+  <input type="text" class="form-control" autocomplete="off" id="employee_name_update" style="width:50%">
+   <label for="usr">Salary:</label>
+    <input type="number" class="form-control" id="employee_salary_update" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+       	<input type="hidden" name="id_employee" value="">
+       	{% csrf_token %}
+
+  <button  class="form-control btn btn-success" id="employee_update_button" >Update</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--employee update modal ends here-->
+
+
+<!---employee modal starts form here-->
 
 
 
@@ -61,11 +111,11 @@
          <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
          <div class="row">
          	<div class="col-md-6">
-        <h4 class="modal-title">Hasibul Islam</h4></br>
-        <h4 style="color:red">Total due:<span style="color:red;font-weight: bold;">19900</span> <span style="color: black">টাকা</span>
+        <h4 class="modal-title" id="emp_name">employee name</h4></br>
+        <h4 style="color:red">Total due:<span style="color:red;font-weight: bold;" id="emp_due">0</span> <span style="color: black">টাকা</span>
 
         </h4>
-        <h4 style="color: red;float: left">Selected Due:<span style="font-weight: bold">1490</span> <span style="color: black">টাকা</span></h4>
+        
    			 </div>
 			<div class="col-md-6 " >
 
@@ -75,8 +125,8 @@
 
 
 				
-				<input type="number" style="width:100px;margin-left: 40px;margin-top: 40px" class="form-control"/>
-				<button type="button" class="btn btn-warning" style="margin-top: 40px" >বেতন দিন</button>
+				<input type="number" style="width:100px;margin-left: 40px;margin-top: 40px" id="pay_employee_amount" class="form-control"/>
+				<button type="button" class="btn btn-warning" style="margin-top: 40px" id="pay_employee_button" >বেতন দিন</button>
 				</span>
 			</div>
 
@@ -93,15 +143,15 @@
 					From:
 
 				</label>
-				<input type="date" name="from" id="from" class="form-control" style="margin: 0px">
+				<input type="date" name="fromdate_employee" id="fromdate_employee" class="form-control" style="margin: 0px">
 				</div>
 				<div class="form-group">
 				<label for="date" style="margin-left: 14px">
 					To    
 
 				</label>
-				<input type="date" name="to" class="form-control " style="margin-left: 23px">
-				<button type="submit" class="btn btn-success text-center font-weight-bold" id="search">Search</button>
+				<input type="date" name="todate_employee" class="form-control " id="todate_employee" style="margin-left: 23px">
+				<button type="submit" class="btn btn-success text-center font-weight-bold" id="search_employee">Search</button>
 
 
 			</div>
@@ -119,17 +169,11 @@
 			        <th>তারিখ</th>
 			        <th >হাজিরা</th>
 			      
-			        <th style="width:120px">action</th>
+			        
 			      </tr>
 			    </thead>
-			    <tbody>
-			      <tr>
-			        <td>02/01/2020</td>
-			        <td>হ্যা
-			        </td>
-			        
-			        <td><a href="#">  <img src="img/edit.png" height="25px" width="25px"></a>  <a href=""> <img src="img/delete.png" height="25px" width="25px" /></a></td>
-			      </tr>
+			    <tbody id="attendence_list">
+			      
 			     
 			      
 
@@ -159,5 +203,6 @@
 
 
 
-<!------employee modal ends here------------------------------------------------------------------->
+<!--employee modal ends here-->
 
+{% endblock content %}

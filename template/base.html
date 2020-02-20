@@ -13,7 +13,7 @@
 
 
 
-
+ 
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -24,7 +24,7 @@
 
 <script src="https://use.fontawesome.com/d2ec2f3c57.js"></script>
 </head>
-<!------ Include the above in your HEAD tag ---------->
+<!-- Include the above in your HEAD tag -->
 <body>
 </script>
 
@@ -32,7 +32,7 @@
 <nav class="navbar navbar-default bg-primary">
 	<div class=" container-fluid">
 		<div class="row">
-			<div class="col-md-12 d-flex">
+			<div class="col">
 
 
 	<div class="navbar-header">
@@ -60,7 +60,7 @@
 
 <!-- sidebar starts here-->
 
-<nav class="navbar navbar-default sidebar font-weight-bold" role="navigation">
+<nav class="navbar navbar-default sidebar font-weight-bold" role="navigation" id="navigate">
     <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -105,13 +105,13 @@
 
 					</a>
 					<ul class="dropdown-menu forAnimate" role="menu">
-						<li><a href="#" data-toggle="modal" data-target="#register-product">Register product   <i class="fa fa-plus-square fa-lg" style="float:right" aria-hidden="true"></i></a></li>
+						<li><a href="#" id="register_product_click" data-toggle="modal" data-target="#register-product">Register product   <i class="fa fa-plus-square fa-lg" style="float:right" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="product_list.html">Product List  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li><a href="{% url 'product_listing' %}">Product List  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="product-stock.html">product stock  <i class="fa fa-server fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+						<li><a href="{% url 'production_stock' %}">product stock  <i class="fa fa-server fa-lg" aria-hidden="true" style="float:right"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="product_stock_history.html">Stock history <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i>    </a></li>
+						<li><a href="{% url 'product_stock_history' %}">Stock history <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i>    </a></li>
 						<li class="divider"></li>
 						
 						
@@ -126,13 +126,13 @@
 					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#add_saleman">Add Saleman <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="saleman_list.html">Saleman list  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li><a href="{% url 'saleman_list' %}">Saleman list  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="sell_to_salesman.html">Sell to salesman  <i class="fa fa-sellsy fa-lg" aria-hidden="true"></i></a></li> 
+						<li><a href="{% url 'saleman_sale' %}">Sell to salesman  <i class="fa fa-sellsy fa-lg" aria-hidden="true"></i></a></li> 
 						<li class="divider"></li>
-						<li><a href="retail_sales.html">retail sales  <i class="fa fa-users fa-lg" aria-hidden="true"></i></a></li> 
+						<li><a href="{% url 'retail_sales'%}">retail sales  <i class="fa fa-users fa-lg" aria-hidden="true"></i></a></li> 
 						<li class="divider"></li>
-						<li><a href="retail_sales_status.html">Retail status  <img style="float:right;" src="{% static 'img/shopping_trolley.png' %}" height="30 px" width="30px"/></a></li>
+						<li><a href="{% url 'retail_status' %}">Retail status  <img style="float:right;" src="{% static 'img/shopping_trolley.png' %}" height="30 px" width="30px"/></a></li>
 						
 						
 						
@@ -147,9 +147,9 @@
 					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#employee_register">Register Employee  <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="employee_list.html">Employee list   <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li><a href="{% url 'employee_list' %}">Employee list   <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="employee_attendence.html">Employee Attendence <i class="fa fa-calendar-check-o fa-lg"></i></a></li> 
+						<li><a href="{% url 'attendence' %}">Employee Attendence <i class="fa fa-calendar-check-o fa-lg"></i></a></li> 
 						
 
 
@@ -246,9 +246,9 @@
 </div>
 <!--end of add raw materials modal-->
 
-<!------------------------------------------------------------------>
 
-<!-- modal for product register --->
+
+<!-- modal for product register -->
 
 
 
@@ -279,14 +279,16 @@
 <!--for adding multiple raw-material to actual product-->
 <div class="form-inline">
 	<div class="form-group" style="margin-top:14px">
+		{% csrf_token %}
 		<label for="usr" style="margin-left: 40px">material:</label>
-		<input type="text" class="form-control" name="material-for-product" list="material_list">
-		<datalist id="material_list">
-			<option value="data1">
-			<option value="data2">
-			
+		<input type="text" class="form-control" id="material_for_product" list="material_lis">
+		<datalist id="material_lis">
+			{% for x in raw_materials%}
+			<option value="{{x.item}}">
+			{% endfor %}
+
 		</datalist>
-		<img id="register_product_page" src="{% static 'img/downarrow.png' %}" height="30" width="30" style="margin-left: 10px;">
+		<img id="register_product_push_button" src="{% static 'img/downarrow.png' %}" height="30" width="30" style="margin-left: 10px;">
 	</div>
 
 </div>
@@ -294,7 +296,7 @@
 
 <!--temporary table starts here-->
 
-<table class="table table-bordered table-hover" style="background-color: white;">
+<table class="table table-bordered table-hover" style="background-color: white;margin-top:12px">
 			    <thead>
 			      <tr>
 			        <th>material name</th>
@@ -302,23 +304,9 @@
 			        <th style="width:120px">action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
-			      <tr>
-			        <td>John</td>
-			        <td><input type="number" class="form-control" style="height:30px;margin:0px;padding: 0px"></td>
-			        <td><a href="#">        <a href=""> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></td>
-			      </tr>
-			      <tr>
-			        <td>John</td>
-			        <td><input type="number" class="form-control" style="height:30px;margin:0px;padding: 0px"></td>
-			        <td><a href="#">        <a href=""> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></td>
-			      </tr>
-			      <tr>
-			        <td>John</td>
-			        <td><input type="number" class="form-control" style="height:30px;margin:0px;padding: 0px"></td>
-			        <td><a href="#">        <a href=""> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></td>
-			      </tr>
+			    <tbody id="product_showcase_table">
 			     
+			       
 			      
 			      
 
@@ -343,7 +331,7 @@
       <div class="modal-footer" style="margin:0px">
        <div class="form-group">
   
-  <button type="submit" class="form-control btn btn-success" id="submit">Add Product</button>
+  <button type="submit" class="form-control btn btn-success" id="submit_product">Add Product</button>
 </div>
       </div>
     </div>
@@ -373,11 +361,16 @@
 
        <div class="form-inline">
 
-      	<div class="form-group " style="display: inline">
+      	<div class="form-group " >
   <label for="usr">Name:</label>
-  <input type="text" class="form-control" id="saleman_name" style="width:50%">
-   <label for="usr">commision(%):</label>
-    <input type="number" class="form-control" id="commision" style="width:90px">
+
+  <input type="text" class="form-control" id="saleman_name" autocomplete="off" style="width:65%;margin-left:58px"></br>
+   <label for="usr">Mobile:</label>
+  <input type="text" class="form-control" id="saleman_mobile" autocomplete="off" style="width:65%;margin-left:52px"></br>
+  <label for="usr">commision(%):</label>
+    <input type="number" class="form-control" autocomplete="off" id="commission_field" style="width:90px"></br>
+ 
+   
 </div>
 <label for="pwd"></label>
 </div>
@@ -391,7 +384,7 @@
       <div class="modal-footer">
        <div class="form-group">
   
-  <button type="submit" class="form-control btn btn-success" id="submit">Add Saleman</button>
+  <button type="submit" class="form-control btn btn-success" id="create_saleman_button">Add Saleman</button>
 </div>
       </div>
     </div>
@@ -429,7 +422,7 @@
   <label for="usr">Name:</label>
   <input type="text" class="form-control" id="employee_name" autocomplete="off" style="width:50%">
    <label for="usr" style="margin-left: 40px">Salery:</label>
-    <input type="number" class="form-control" id="salary" style="width:90px">
+    <input type="number" class="form-control" id="employee_salary" style="width:90px">
 </div>
 <label for="pwd"></label>
 </div>
@@ -443,7 +436,7 @@
       <div class="modal-footer">
        <div class="form-group">
   
-  <button type="submit" class="form-control btn btn-success" id="submit">Add Employee</button>
+  <button type="submit" class="form-control btn btn-success" id="submit_employee">Add Employee</button>
 </div>
       </div>
     </div>

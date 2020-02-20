@@ -1,6 +1,13 @@
 
-<!-----------------------------base file ends there--------------------------------------->
-<!------------------------------------------------------------------------------------------->
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<!--base file ends there-->
+
 
 
 <!--retail buyers list starts here-->
@@ -11,21 +18,21 @@
 			<div class="well bg-dark" style="background-color: grey;color:white">Buyer list</div>
 			<!-- search by date-->
 
-			<form class="form-inline" style="margin: 0px">
+			<form class="form-inline" method="get" action="{% url 'retail_search' %}" style="margin: 0px">
 				<div class="form-group" style="margin:0px">
 				<label style="margin-left:-76px" for="date">
 					From:
 
 				</label>
-				<input type="date" name="from" id="from" class="form-control" style="margin: 0px">
+				<input type="date" name="from_date" id="from-retail" class="form-control" style="margin: 0px">
 				</div>
 				<div class="form-group">
 				<label for="date">
 					To    
 
 				</label>
-				<input type="date" name="to" class="form-control " style="margin-left: 23px">
-				<button type="submit" class="btn btn-success text-center font-weight-bold" id="search">Search</button>
+				<input type="date" name="to_date" id="to-retail" class="form-control " style="margin-left: 23px">
+				<button type="submit" class="btn btn-success text-center font-weight-bold" id="search-retail">Search</button>
 
 
 			</div>
@@ -42,15 +49,17 @@
 			      </tr>
 			    </thead>
 			    <tbody>
+			    	{% for name in names %}
 			      <tr>
-			        <td>John</td>
+			        <td>{{name.name}}</td>
 			        
 			        <td>
-						<a href="#" data-toggle="modal" data-target="#retail_details"><img src="img/view_details.png" height="25px" width="25px"></a>
-			        	<a href="#"><img src="img/edit.png" height="25px" width="25px" ></a> 
-			            <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a>
+						<a href="#" data-toggle="modal" data-target="#retail_details"><img src="{% static 'img/view_details.png' %}" height="25px" width="25px"></a>
+			        	
+			            <delretail><a href="#" nameid="{{name.id}}"> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></delretail>
 			        </td>
 			      </tr>
+			      {% endfor %}
 			      
 			    </tbody>
 			  </table>
@@ -72,7 +81,7 @@
 <!--retail buyers list showing code  ends here-->
 
 
-<!-----------------modal for retail details-------------------------->
+<!---modal for retail details-->
 
 
 <div id="retail_details" class="modal fade" role="dialog" style="height: auto" >
@@ -155,7 +164,7 @@
 			        <td>can tos ggghhh g</td>
 			        <td>120</td>
 			        <td>137373</td>
-			        <td><a href="#">  <img src="img/edit.png" height="25px" width="25px"></a>  <a href=""> <img src="img/delete.png" height="25px" width="25px" /></a></td>
+			        <td><a href="#" >  <img src="{% static 'img/edit.png' %}" height="25px" width="25px"></a>  <a href=""> <img src="{% static 'img/delete.png' %}" height="25px" width="25px" /></a></td>
 			      </tr>
 			     
 			      
@@ -185,10 +194,28 @@
 </div>
 
 
-<!-------------------end of modal for retail details----------------->
+<!---end of modal for retail details-->
 
 
 
+
+<!--retail status update-->
+
+
+
+
+
+
+
+
+<!--end of the section of saleman modification-->
+
+
+<!--retail status update close here-->
+
+
+
+{% endblock content %}
 
 
 

@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load static %}
 
 
 
@@ -6,8 +8,7 @@
 
 
 
-
-
+{% block content %}
 
 <div class="container-fluid">
 	<div class="row">
@@ -21,22 +22,17 @@
 			        <th style="width:120px">action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="product-list-table">
+					{% for product in product %}
+
 			      <tr>
-			        <td>John</td>
-			        <td>Doe</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
+			        <td>{{product.name}}</td>
+			        <td>{{product.price}}</td>
+			        <td><proedit><a href="#" product-id="{{product.id}}" data-toggle="modal" data-target="#update_product"><img src="{% static 'img/edit.png' %}" height="25px" width="25px" ></a>   </proedit>    
+			         <prodel><a href="#" product-id="{{product.id}}"> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></prodel></td>
 			      </tr>
-			      <tr>
-			        <td>Mary</td>
-			        <td>Moe</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
-			      </tr>
-			      <tr>
-			        <td>July</td>
-			        <td>Dooley</td>
-			      <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
-			      </tr>
+			      {% endfor %}
+			      
 			    </tbody>
 			  </table>
 
@@ -49,6 +45,64 @@
 
 </div>
 
+
+
+
+
+
+
+<!---modal for update product list-->
+
+<div id="update_product" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" id="closerawmaterialupdatemodal" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Update Product</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+       	{% csrf_token %}
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Product Name:</label>
+  <input type="text" class="form-control" autocomplete="off" id="product_name_update" style="width:50%">
+   <label for="usr">price:</label>
+    <input type="number" class="form-control" id="product_price_update" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+       	<input type="hidden" name="id_product" value="">
+       	{% csrf_token %}
+
+  <button  class="form-control btn btn-success" id="product_update_button" >Update</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!--end of the  modal update product list-->
+
+
+
+
+
+{% endblock content %}
 
 
 

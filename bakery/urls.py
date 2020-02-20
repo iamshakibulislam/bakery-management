@@ -21,5 +21,8 @@ from raw_materials import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name="index"),
-    path('raw_materials/',include('raw_materials.urls'))
+    path('raw_materials/',include('raw_materials.urls')),
+    path('production/',include('production.urls')),
+    path('sales/',include('sales.urls')),
+    path('employee/',include('employee.urls')),
 ]

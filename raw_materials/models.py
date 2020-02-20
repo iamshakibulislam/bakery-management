@@ -14,7 +14,7 @@ class raw_material_list(models.Model):
 
 class raw_material_stock(models.Model):
 	item=models.ForeignKey(raw_material_list,on_delete=models.CASCADE)
-	quantity=models.IntegerField()
+	quantity=models.FloatField()
 	value=models.FloatField(max_length=12)
 
 	def __str__(self):
@@ -25,7 +25,7 @@ class raw_material_stock_history(models.Model):
 
 	date=models.DateField(auto_now_add=False,auto_now=False,default=today)
 	item=models.ForeignKey(raw_material_list,on_delete=models.CASCADE)
-	quantity=models.IntegerField()
+	quantity=models.FloatField()
 
 
 	def __str__(self):

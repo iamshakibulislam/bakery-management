@@ -1,9 +1,13 @@
 
 
+{% extends 'base.html' %}
+
+{% load static %}
 
 
 
 
+{% block content %}
 <!--saleman list showing code here-->
 
 
@@ -20,17 +24,20 @@
 			        <th style="width:120px">action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="saleman_list">
+			    	{% for man in list %}
 			      <tr>
-			        <td>John</td>
-			        <td>12%</td>
+			        <td>{{ man.name }}</td>
+			        <td>{{man.commission}} %</td>
 			        <td>
 
 
-						<a href="#" data-toggle="modal" data-target="#view_details"><img src="img/view_details.png" height="25px" width="25px"></a>
-			        	<a href="#"><img src="img/edit.png" height="25px" width="25px" ></a>        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
+						<a href="{% url 'saleman_profile' man.id %}" target="__blank"><img src="{% static 'img/view_details.png' %}" height="25px" width="25px"></a>
+			        	<updatesaleman><a href="#" saleman-id="{{ man.id }}" data-toggle="modal" data-target="#update_saleman"><img src="{% static 'img/edit.png' %}" height="25px" width="25px" ></a> 
+			        	</updatesaleman>
+			        	<saledel><a href="" saleman-id="{{man.id}}"> <img src="{% static 'img/delete.png' %}" height="25x" width="25px" /></a></saledel></td>
 			      </tr>
-			      
+			      {% endfor %}
 			    </tbody>
 			  </table>
 
@@ -52,7 +59,7 @@
 
 
 
-<!--------------------------------view details for saleman modal starts here ------------------------------------------->
+<!---view details for saleman modal starts here -->
 
 
 
@@ -132,10 +139,10 @@
 			    <tbody>
 			      <tr>
 			        <td>02/01/2020</td>
-			        <td>can tos ggghhh g</td>
+			        <td>can  g</td>
 			        <td>120</td>
 			        <td>137373</td>
-			        <td><a href="#">  <img src="img/edit.png" height="25px" width="25px"></a>  <a href=""> <img src="img/delete.png" height="25px" width="25px" /></a></td>
+			        <td><a href="#">  <img src="{% static 'img/edit.png' %}" height="25px" width="25px"></a>  <a href=""> <img src="{% static 'img/delete.png' %}" height="25px" width="25px" /></a></td>
 			      </tr>
 			     
 			      
@@ -164,13 +171,61 @@
   </div>
 </div>
 
+<!--view details for salesman ends here-->
+
+
+<!-- this section is for salemans information modification only -->
+
+
+<div id="update_saleman" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" id="closerawmaterialupdatemodal" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Update Information</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+       	{% csrf_token %}
+
+      	<div class="form-group " >
+      		{% csrf_token %}
+  <label for="usr"> Name:</label>
+  <input type="text" class="form-control" autocomplete="off" id="saleman_name_update" style="width:50%;margin-left:58px"></br>
+  <label for="usr"> Mobile no:</label>
+  <input type="text" class="form-control" autocomplete="off" id="saleman_mobile_update" style="width:50%;margin-left:31px"></br>
+   <label for="usr">commission:</label>
+    <input type="number" class="form-control" id="saleman_commission_update" style="width:90px;margin-left:14px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
 
 
 
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+       	<input type="hidden" name="id_saleman" value="">
+
+  <button  class="form-control btn btn-success" id="saleman_update_button" >Update</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 
+<!--end of the section of saleman modification-->
 
-<!---------------------------------view details for saleman modal ends here--------------------------------------------->
+
+{% endblock content %}
 
 

@@ -131,6 +131,7 @@
 		nav.sidebar{
 			margin-left: 0px;
 			float: left;
+			height:100%;
 		}
 		/*Show hidden items on nav*/
 		nav.sidebar .forAnimate{
@@ -163,10 +164,41 @@
     td img:hover{width:36px;margin:3px;}
     td{text-align: center}
     #register_product_page:hover{width:35px;height:35px;}
-    #plus_window{margin-left: 8px;}
-    #plus_window:hover{height:40px;width:40px;}
+    .downarrow:hover{width:35px;height:35px;}
+    .send_button{margin-left: 8px;margin-top: 8px}
+    .fa-paper-plane-o:hover{border-bottom:2px groove green;}
 
     #print{margin-left: 65px}
 
 
     #print:hover{height:40px;width: 40px}
+
+    .pad{margin-top: 15px;margin-bottom:15px;}
+
+    #navigate{height: 100%}
+     datalist{
+       z-index: 1000 !important;
+   }
+
+
+
+
+
+   .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 35%;
+  border-radius: 5px;
+  padding:3px;
+  margin:3px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+
+.container {
+  padding: 2px 16px!important;
+}

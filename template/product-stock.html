@@ -1,3 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
 
 
 <div class="container-fluid">
@@ -10,18 +15,21 @@
 
       	<div class="form-group text-light" style="display: inline;">
   <label  for="usr"><font color="white"><b>product Name:</b></font></label>
-  <input type="text" class="form-control" id="material_name" list="datalist" style="width:50%">
+  <input type="text" class="form-control" id="stock_product_name" list="productlist" style="width:50%">
 
-     <datalist id="datalist">
-     	<option value="data1">
-     	<option value="data2">
+     <datalist id="productlist">
+     	{% for x in item_list %}
+		<option value="{{x.name}}">
+     	{% endfor %}
+     	
      	
      </datalist>  
    <label for="usr"><font color="white"><b>quantity(packet):</b></font></label>
-    <input type="number" class="form-control" id="raw_material_price" style="width:90px">
+   {% csrf_token %}
+    <input type="number" class="form-control" id="product_quantity" style="width:90px">
 </div>
 <label for="pwd"></label>
-<button type="button" class="btn btn-success" id="material_stock_button">Add</button>
+<button type="button" class="btn btn-success" id="product_stock_button_click">Add</button>
 </div><!-- end of add raw material form-->
 
 
@@ -33,28 +41,18 @@
 			        <th style="width:120px">product</th>
 			        <th style="width: 80px">packet</th>
 			        <th style="width:80px">value</th>
-			        <th style="width:80px">action</th>
+			      <!--  <th style="width:80px">action</th> -->
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="product_stock_table">
+			    	{% for st in stock_list %}
 			      <tr>
-			        <td>John</td>
-			        <td>28</td>
-			        <td>89760</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a> </td>
+			        <td>{{st.name}}</td>
+			        <td>{{st.quantity}}</td>
+			        <td>{{st.value}}</td>
+			       <!-- <td><productup><a href="#" data-toggle="modal" data-target="#pro_stock_up_modal" stock-id="{{st.id}}"><img src="{% static 'img/edit.png' %}" height="25px" width="25px" ></a></productup> </td> -->
 			      </tr>
-			      <tr>
-			        <td>Mary</td>
-			        <td>39</td>
-			        <td>098768</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a> </td>
-			      </tr>
-			      <tr>
-			        <td>July</td>
-			        <td>98</td>
-			        <td>866888</td>
-			      <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a></td>
-			      </tr>
+			     {% endfor %}
 			    </tbody>
 			  </table>
 
@@ -65,6 +63,72 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+
+
+
+<!--edit modal area for update-->
+
+<div id="pro_stock_up_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" id="closerawmaterialupdatemodal" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Update Stock</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+       	{% csrf_token %}
+
+      	<div class="form-group " style="display: inline">
+      		<label for="usr">পণ্য:</label>
+  <input type="text" class="form-control" autocomplete="off" id="product_stock_item" style="width:40%" disabled="true" />
+  <label for="usr">quantity:</label>
+  <input type="number" class="form-control" autocomplete="off" id="product_stock_quantity" style="width:91px">
+   <label for="usr">value:</label>
+    <input type="number" class="form-control" id="product_stock_value" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+      	<input type="hidden" name="product_id_stock" value="">
+       <div class="form-group">
+       <!--	<input type="hidden" name="id_material" value=""> -->
+
+  <button  class="form-control btn btn-success" id="product_stock_update_button" >Update</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+
 
 
 

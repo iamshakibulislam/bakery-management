@@ -1,0 +1,178 @@
+
+{% load static %}
+
+
+<head>
+<title>mina bakery</title>
+<meta charset="UTF-8">
+
+
+
+
+
+
+
+
+ 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!--<script type="text/javascript" src="{% static 'js/javascript.js' %}"> </script>-->
+<script src="http://localhost/bloging/javascript.js"></script>
+
+<script src="https://use.fontawesome.com/d2ec2f3c57.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="bg-success text-white font-weight-bold">
+				<marquee>{{name}}</marquee>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		
+		<div class="col-md-12">
+			<div class="d-flex justify-content-start">
+			<div class="card">
+				    <div class="card-header font-weight-bold bg-info text-center text-light">Total Due</div>
+				    <div class="card-body bg-warning text-danger text-center font-weight-bold">{{totaldue}}</div> 
+				    
+		    </div>
+		
+
+		    <!--selected date due-->
+		
+			<div class="card">
+				    <div class="card-header font-weight-bold bg-info text-center text-light">Selected Due</div>
+				    <div class="card-body bg-warning text-danger text-center font-weight-bold">{{selected_due}}</div> 
+				    
+		    </div>
+		  
+    		
+			<!--selected total value-->
+
+			
+			<div class="card">
+				    <div class="card-header font-weight-bold bg-info text-center text-light">Selected Value</div>
+				    <div class="card-body bg-warning text-danger text-center font-weight-bold">{{selected_value}}</div> 
+				    
+		    </div>
+			<!--end of selected total value-->
+
+
+
+    	</div>
+
+	</div>
+
+</div>
+
+
+        <div class="row">
+        	<!--search button and table showing for saleman starting from there-->
+        	<div class="col-md-6">
+        		
+   <form class="form-inline" method="post" action="{% url 'saleman_profile_search' %}" style="margin-top: 10px;margin-bottom:10px;align:center">
+   					{% csrf_token %}
+				<div class="form-group" style="margin:0px">
+				<label class="font-weight-bold text-white" style="margin-right:10px;margin-left:29px" for="date">
+					From:
+
+				</label>
+				<input type="date" name="from_date_profile" id="from_profile" class="form-control" style="margin: 0px">
+				</div>
+				<input type="hidden" name="saleman_id" value="{{id}}">
+				<div class="form-group">
+				<label class="font-weight-bold text-white" for="date" style="margin-left: 14px">
+					To    
+
+				</label>
+				<input type="date" name="to_date_profile" class="form-control " id="to_profile" style="margin-left: 23px">
+				<button type="submit" class="btn btn-success text-center font-weight-bold" style="margin-left:26px" id="searchbuttonsubmit">Search</button>
+
+
+			</div>
+			
+				
+			</form>
+
+
+
+<!--temporary table starts here-->
+
+<table class="table table-bordered table-hover" style="background-color: white;margin-top: 12px">
+			    <thead>
+			      <tr>
+			        <th>date</th>
+			        <th >product</th>
+			        <th style="width:90px">quantity</th>
+			        <th style="width:90px">value</th>
+			        
+			      </tr>
+			    </thead>
+			    <tbody>{% for sale in sale_list %}
+			      <tr>
+
+			        <td>{{sale.date}}</td>
+			        <td>{{sale.product.name}}</td>
+			        <td>{{sale.quantity}}</td>
+			        <td>{{sale.value}}</td>
+			       
+			      </tr>
+			     {% endfor %}
+			      
+
+
+
+
+
+			    </tbody>
+			  </table>
+
+
+
+        	</div>
+					
+
+
+			<!--creating column for depositing money from saleman-->
+			<div class="col-md-6">
+				<div class="card" style="width:80%;align:center">
+				    
+				    <div class="card-body bg-danger text-danger text-center font-weight-bold" style="width:100%;align:center">
+				    	
+						<form class="form-inline" method="post" action="{% url 'saleman_deposit' %}">
+							{% csrf_token %}
+							<div class="from-group">
+								<input type="hidden" name="salemanname" value="{{name}}">
+								<input type="hidden" name="id" value="{{id}}">
+								<label for="username" class="text-white font-weight-bold">
+									
+								</label>
+								<span class="text-white font-weight-bold">পরিমানঃ</span>
+								<input type="number" class="form-control" name="amount">
+							</div>
+							<div class="form-group">
+								<input type="submit" value="জমা দিন" class="btn btn-success ml-3">
+							</div>
+							
+						</form>
+
+				    </div> 
+				    
+		    </div>
+
+			</div>
+			<!--end of the column depositing-->
+        </div>
+
+
+</div>
+
+
+</body>

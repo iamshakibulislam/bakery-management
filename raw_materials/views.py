@@ -102,12 +102,12 @@ def stock(request):
 		if len(raw_material_stock.objects.filter(item__item=item))>0:
 			sel_from_list=raw_material_list.objects.get(item=item)
 			sel=raw_material_stock.objects.get(item__item=item)
-			sel.quantity=int(sel.quantity)+int(quantity)
-			sel.value=float(sel.value)+(int(quantity)*float(sel_from_list.price))
+			sel.quantity=float(sel.quantity)+float(quantity)
+			sel.value=float(sel.value)+(float(quantity)*float(sel_from_list.price))
 			sel.save()
 			hist=raw_material_stock_history()
 			hist.item=sel_from_list
-			hist.quantity=int(quantity)
+			hist.quantity=float(quantity)
 			hist.save()
 
 			all_obj=raw_material_stock.objects.all()
@@ -121,8 +121,8 @@ def stock(request):
 			sel_from_list=raw_material_list.objects.get(item=item)
 			stock_table=raw_material_stock()
 			stock_table.item=sel_from_list
-			stock_table.quantity=int(quantity)
-			stock_table.value=int(sel_from_list.price)*int(quantity)
+			stock_table.quantity=float(quantity)
+			stock_table.value=float(sel_from_list.price)*float(quantity)
 			stock_table.save()
 			hist=raw_material_stock_history()
 			hist.item=sel_from_list
@@ -145,7 +145,7 @@ def stock_update(request):
 	elif request.method=="POST":
 		item=request.POST['item']
 		quantity=int(request.POST['quantity'])
-		value=int(request.POST['value'])
+		value=float(request.POST['value'])
 		item_id=int(request.POST['item_id'])
 
 		sl=raw_material_stock.objects.get(id=item_id)

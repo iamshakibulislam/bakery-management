@@ -1,43 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
 
 
 
 
 
-
-
-
+{% block content %}
 <!--retail sales starts from here-->
 
 
 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-5 bg-warning" style="padding-top: 15px;margin-left:12px">
+<div class="container-fluid" id="fluid">
+	<div class="row" id="row_container">
+		<div class="col-md-5 bg-success pad" style="padding-top: 15px;margin-left:12px">
       	
 
        <div class="form-inline">
 
       	<div class="form-group " style="display: inline">
-  <label for="usr" style="margin-left: 55px" >Name:</label>
-  <input type="text" autocomplete="off" class="form-control" id="raw_material_name" list="salesman_list_show" style="width:50%">
+  <label for="usr" style="margin-left:60px">Name:</label>
+  <input type="text" autocomplete="off" class="form-control" id="retailer_name" list="retailer_list_show" style="width:50%">
 
-  <datalist id="salesman_list_show">
-  	<option value="safik">
-  	<option value="hokjan">
+  <datalist class="retailer_list_show" id="retailer_list_show">
+  	{% for retail_name in retailers %}
+  	<option value="{{retail_name.name}}">
+  	{% endfor %}
+  	
   </datalist>
    
 </div>
 <!--print image-->
-<label for="pwd" style="margin-left: 5px">
-	<img id="print" src="img/print.png" height="36px" width="36px">
+<label for="pwd">
+	<img id="print" src="{% static 'img/print.png' %}" height="36px" width="36px">
 </label>
 <!--end print image-->
 
 <!--plus new window of sale to saleman-->
 
-<!--<label for="pwd">
-	<img id="plus_window" src="img/plus_window.png" height="36px" width="36px">
-</label>-->
+<label for="pwd">
+	<i class="fa fa-paper-plane-o send_button_retail" style="font-size:36px;color:red;height:36px;width:36px"></i>
+</label>
 
 <!--plus new window ends here-->
 
@@ -46,19 +50,19 @@
 <!--for adding multiple raw-material to actual product-->
 <div class="form-inline">
 	<div class="form-group" style="margin-top:14px">
-		<label for="usr" style="margin-left: 40px">Product:</label>
-		<input type="text" autocomplete="off" class="form-control" name="material-for-product" list="material_list">
-		<datalist id="material_list">
-			<option value="data1">
-			<option value="data2">
-			
+		<label for="usr" style="margin-left: 46px">Product:</label>
+		<input type="text" autocomplete="off" class="form-control" name="material-for-product" list="product_list">
+		<datalist class="product_list" id="product_list">
+			{% for product in product %}
+				<option value="{{product.name}}" >
+			{% endfor %}
 		</datalist>
 
 			<label for="usr">pack:</label>
     <input type="number" class="form-control" id="raw_material_price" style="width:90px">
 
 
-		<img id="register_product_page" src="img/downarrow.png" height="30" width="30" style="margin-left: 10px;">
+		<img class="downarrow" src="{% static 'img/downarrow.png' %}" height="30" width="30" style="margin-left: 10px;">
 	</div>
 
 </div>
@@ -69,29 +73,14 @@
 <table class="table table-bordered table-hover" style="background-color: white;margin-top: 16px">
 			    <thead>
 			      <tr>
-			        <th>material name</th>
-			        <th style="width: 80px">quantity(gm)</th>
+			        <th>Product name</th>
+			        <th style="width: 80px">quantity(pack)</th>
 			        <th style="width:120px">action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
-			      <tr>
-			        <td>John</td>
-			        <td>1626</td>
-			        <td><a href="#">        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
-			      </tr>
-			      <tr>
-			        <td>John</td>
-			        <td>4948</td>
-			        <td><a href="#">        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
-			      </tr>
-			      <tr>
-			        <td>John</td>
-			        <td>0987</td>
-			        <td><a href="#">        <a href=""> <img src="img/delete.png" height="25x" width="25px" /></a></td>
-			      </tr>
-			     
+			    <tbody id="product_listing_retailer">
 			      
+			   
 			      
 
 
@@ -108,25 +97,97 @@
 
 
         
+
+
+        
 </div>
 
 
+<!-- checking retail sales status for example due and history-->
 
-</div>
-</div>
+<div class="col-md-4 bg-info pad" style="padding-top: 15px;margin-left:12px">
+      	
 
+       <div class="form-inline">
 
+      	<div class="form-group " style="display: inline">
+  
+  <input type="button"  class="form-control btn btn-primary shadow-lg" id="retailer_checkbutton" value="Check" style="width:50%">
+
+ 
    
+</div>
+
+<!--end print image-->
+
+<!--plus new window of sale to saleman-->
+
+
+<!--plus new window ends here-->
+
+</div>
+
+<!--for adding multiple raw-material to actual product-->
+<div class="form-inline">
+	<div class="form-group" style="margin-top:14px">
+		<label for="usr" style="margin-left: 0px">Due:<span id="due">0</span></label></br>
+		<label for="submiting"></label>
+		<input type="number" id="retail_deposit" class="form-control" style="margin-top:4px;margin-left:0px" />
+		<input type="button" id="retail_deposit_button" class="d-inline btn btn-success" value="জমা দিন">
+		
+		
+
+		
+
+
+		
+	</div>
+
+</div>
+<!--end of th above comment of multiple raw material-->
+
+<!--temporary table starts here-->
+
+<table class="table table-bordered table-hover" style="background-color: white;margin-top: 16px">
+			    <thead>
+			      <tr>
+			        <th>Date</th>
+			        <th>product</th>
+			        <th style="width:120px">quantity</th>
+			      </tr>
+			    </thead>
+			    <tbody id="history_listing_retailer">
+			      
+			   
+			      
 
 
 
 
 
+			    </tbody>
+			  </table>
 
 
-<!--retail sales ends here----------->
 
 
+<!--temporary table ends there-->
+
+
+        
+
+
+        
+</div>
+
+
+
+<!--end of checking retail sales status for due and history-->
+
+</div>
+</div>
+
+{% endblock content %}
 
 
 
