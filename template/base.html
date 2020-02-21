@@ -166,7 +166,7 @@
 					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#add_external_cost">Add New Cost    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="external_cost_list.html">Cost list    <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
+						<li><a href="{% url 'external_cost_listing' %}">Cost list    <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
 						<li><a href="#" data-toggle="modal" data-target="#expense_external_cost">Expense item    <i class="fa fa-minus-square fa-lg"></i></a></li>
 						<li class="divider"></li>
@@ -491,7 +491,7 @@
       <div class="modal-footer">
        <div class="form-group">
   
-  <button type="submit" class="form-control btn btn-success" id="submit">Add Item</button>
+  <button type="submit" class="form-control btn btn-success" id="submit_external_item">Add Item</button>
 </div>
       </div>
     </div>
