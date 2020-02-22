@@ -1,10 +1,11 @@
- 
+{% extends 'base.html' %}
+{% load static %} 
 
 
 
 
 
-
+{% block content %}
 
 <div class="container-fluid">
 
@@ -16,18 +17,20 @@
 
       	<div class="form-group text-light" style="display: inline;">
   <label  for="usr"><font color="white"><b>Cost Name:</b></font></label>
-  <input type="text" class="form-control" id="material_name" list="datalist" style="width:50%">
+  <input type="text" class="form-control" id="external_cost_item" list="datalist" style="width:50%">
 
      <datalist id="datalist">
-     	<option value="data1">
-     	<option value="data2">
+     	{% for x in item_list %}
+     	<option value="{{x.item}}">
+     	{% endfor %}
+     	
      	
      </datalist>  
    <label for="usr"><font color="white"><b>Unit:</b></font></label>
-    <input type="number" class="form-control" id="raw_material_price" style="width:90px">
+    <input type="number" class="form-control" id="external_cost_quantity" style="width:90px">
 </div>
 <label for="pwd"></label>
-<button type="button" class="btn btn-success" id="material_stock_button">Add</button>
+<button type="button" class="btn btn-success" id="external_cost_stock_button_click">Add</button>
 </div><!-- end of add raw material form-->
 
 
@@ -39,28 +42,22 @@
 			        <th style="width:120px">Cost Name</th>
 			        <th style="width: 80px">Unit</th>
 			        <th style="width:80px">value</th>
-			        <th style="width:80px">action</th>
+			        
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="external_list">
+			    	{% for item in stock_list %}
+	
+
 			      <tr>
-			        <td>John</td>
-			        <td>28</td>
-			        <td>89760</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a> </td>
+			        <td>  {{ item.item.item }} </td>
+			        <td>  {{ item.quantity }}   </td>
+			        <td>  {{ item.value }}      </td>
+			        
 			      </tr>
-			      <tr>
-			        <td>Mary</td>
-			        <td>39</td>
-			        <td>098768</td>
-			        <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a> </td>
-			      </tr>
-			      <tr>
-			        <td>July</td>
-			        <td>98</td>
-			        <td>866888</td>
-			      <td><a href="#"><img src="img/edit.png" height="25px" width="25px" ></a></td>
-			      </tr>
+
+			      {% endfor %}
+			      
 			    </tbody>
 			  </table>
 
@@ -75,4 +72,4 @@
 
 
 
-
+{% endblock content %}

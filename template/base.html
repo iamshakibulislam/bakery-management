@@ -168,9 +168,9 @@
 						<li class="divider"></li>
 						<li><a href="{% url 'external_cost_listing' %}">Cost list    <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="#" data-toggle="modal" data-target="#expense_external_cost">Expense item    <i class="fa fa-minus-square fa-lg"></i></a></li>
+						<li><a href="#" data-toggle="modal" id="popup_expense" data-target="#expense_external_cost">Expense item    <i class="fa fa-minus-square fa-lg"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="external_stock_list.html">Stock Items   <i class="fa fa-archive fa-lg" aria-hidden="true"></i></a></li> 
+						<li><a href="{% url 'stock_external_cost' %}">Stock Items   <i class="fa fa-archive fa-lg" aria-hidden="true"></i></a></li> 
 						<li class="divider"></li>
 						<li><a href="external_stock_history.html">stock history   <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
 					</ul>
@@ -505,7 +505,7 @@
 
 
 
-<!-------external cost expense(-) modal starts here------------------->
+<!-external cost expense(-) modal starts here-->
 
 
 
@@ -524,14 +524,12 @@
 
       	<div class="form-group " style="display: inline">
   <label for="usr">Cost Name:</label>
-  <input type="text" class="form-control" id="expense_cost_name_input" autocomplete="off" list="expense_list" style="width:50%">
-  <datalist id="expense_list">
-  	<option value="item 1">
-  	<option value="item2">
-  	
+  <input type="text" class="form-control" id="expense_cost_name_input" autocomplete="off" list="expense_listing" style="width:50%">
+  <datalist id="expense_listing">
+  	  	
   </datalist>
    <label for="usr">unit:</label>
-    <input type="number" class="form-control" id="extra_cost_price_input" style="width:90px">
+    <input type="number" class="form-control" id="external_item_expense_quantity" style="width:90px">
     <label for="usr"></label>
     <button class="btn  btn-danger" type="submit" class="form-control" id="expense_submit">Expense</button>
 </div>
@@ -544,10 +542,10 @@
 
 
       </div>
-      <!---modal footer---->
+      <!---modal footer-->
       <div class="modal-footer">
       </div>
-      <!---modal footer---->
+      <!---modal footer-->
     </div>
 
   </div>
@@ -558,7 +556,7 @@
 
 
 
-<!---external  cost expense(-) modal ends here-------------------------->
+<!---                            external  cost expense(-) modal ends here                         -->
 
 
 
@@ -567,7 +565,7 @@
 
 
 
-<!----------add new extra cost modal starts here--------------->
+<!--add new extra cost modal starts here-->
 
 
 <div id="cost_modal" class="modal fade " role="dialog" >

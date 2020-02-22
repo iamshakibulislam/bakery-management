@@ -62,3 +62,94 @@ def delete(request):
 
 	return JsonResponse(json,safe=False)
 
+
+#stock 
+
+
+def stock(request):
+	if request.method=="GET":
+
+
+		item_list=external_cost_list.objects.all()
+		stock_list=external_cost_stock.objects.all()
+
+		return render(request,'external_stock_list.html',{'item_list':item_list,'stock_list':stock_list})
+
+
+
+		
+
+	if request.method=="POST":
+		item=request.POST['item']
+		quantity=request.POST['quantity']
+		json=[]
+		
+
+
+		if len(external_cost_stock.objects.filter(item__item=item))>0:
+			sel_from_list=external_cost_list.objects.get(item=item)
+
+			sel=external_cost_stock.objects.get(item__item=item)
+			sel.quantity=float(sel.quantity)+float(quantity)
+			sel.value=float(sel.value)+(float(quantity)*float(sel_from_list.price))
+
+			sel.save()
+			hist=external_cost_stock_history()
+			hist.item=sel_from_list
+			hist.quantity=float(quantity)
+			hist.save()
+
+			all_obj=external_cost_stock.objects.all()
+			for x in all_obj:
+				json.append({'id':x.id,'item':x.item.item,'quantity':x.quantity,'value':x.value})
+
+			return JsonResponse(json,safe=False)
+
+
+		else:
+			sel_from_list=external_cost_list.objects.get(item=item)
+			stock_table=external_cost_stock()
+			stock_table.item=sel_from_list
+			stock_table.quantity=float(quantity)
+			stock_table.value=float(sel_from_list.price)*float(quantity)
+			stock_table.save()
+			hist=external_cost_stock_history()
+			hist.item=sel_from_list
+			hist.quantity=int(quantity)
+			hist.save()
+			all_obj=external_cost_stock.objects.all()
+			for x in all_obj:
+				json.append({'id':x.id,'item':x.item.item,'quantity':x.quantity,'value':x.value})
+
+			return JsonResponse(json,safe=False)
+
+			
+
+def expense_list(request):
+	json=[]
+	ex=external_cost_list.objects.all()
+	for x in ex:
+		json.append({'item':x.item})
+
+	return JsonResponse(json,safe=False)
+
+
+
+def expense_item(request):
+	item=request.GET['item']
+	quantity=request.GET['quantity']
+
+	stock=external_cost_stock.objects.get(item__item=item)
+	sel=external_cost_list.objects.get(item=item)
+	expense_table=external_cost_expense()
+
+	stock.quantity=float(stock.quantity)-float(quantity)
+	stock.value=(stock.quantity)*(sel.price)
+	stock.save()
+
+	expense_table.item=sel
+	expense_table.quantity=float(quantity)
+	expense_table.value=float(quantity)*float(sel.price)
+	expense_table.save()
+
+	return JsonResponse({'status':'ok'})
