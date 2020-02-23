@@ -2,6 +2,9 @@
 		height: 100%;
 	}
 
+	body{background-color: #45b3e0
+	 !important}
+
 	/* remove outer padding */
 	.main .row{
 		padding: 0px;
@@ -214,8 +217,9 @@
 
 .flip-card {
   background-color: transparent;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 100px;
+  margin-right:6px;
   perspective: 1000px;
 }
 
@@ -242,14 +246,20 @@
 }
 
 .flip-card-front {
-  background-color: #bbb;
-  color: black;
+  background-color: #331a00;
+
+  color: white;
+  font-size: 35px;
+  text-align: center;
 }
 
 .flip-card-back {
-  background-color: #2980b9;
+  background-color: #006600;
   color: white;
   transform: rotateY(180deg);
 }
 
 /* end of adding flipcards */
+
+
+.flex-container{display: flex;flex-direction: row;justify-content: flex-end;}

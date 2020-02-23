@@ -14,12 +14,13 @@
 
 
 
-
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">-->
  
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <!--<script type="text/javascript" src="{% static 'js/javascript.js' %}"> </script>-->
 <script src="http://localhost/bloging/javascript.js"></script>
@@ -30,11 +31,11 @@
 <body>
 </script>
 
-
-<nav class="navbar navbar-inverse ">
 	<div class=" container-fluid">
 		<div class="row">
 			<div class="col">
+<nav class="navbar navbar-inverse ">
+
 
 
 	<div class="navbar-header">
@@ -58,9 +59,12 @@
 
 
 
-
+<div class="container-fluid">
+	<div class="row">
+		<div class="col ml-0">
 
 <!-- sidebar starts here-->
+
 
 <nav class="navbar navbar-inverse sidebar font-weight-bold" role="navigation" id="navigate">
     <div class="container-fluid">
@@ -614,6 +618,8 @@
   </div>
 </div>
 
+<!--sidebar div 3 close here-->
+</div>
 
 
 {% block content %}
@@ -621,7 +627,8 @@
 {% endblock content %}
 
 
-
+</div>
+</div>
 
 
 </body>
