@@ -31,7 +31,7 @@
 </script>
 
 
-<nav class="navbar navbar-default bg-primary">
+<nav class="navbar navbar-inverse ">
 	<div class=" container-fluid">
 		<div class="row">
 			<div class="col">
@@ -62,7 +62,7 @@
 
 <!-- sidebar starts here-->
 
-<nav class="navbar navbar-default sidebar font-weight-bold" role="navigation" id="navigate">
+<nav class="navbar navbar-inverse sidebar font-weight-bold" role="navigation" id="navigate">
     <div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -81,7 +81,7 @@
 				
 				<li class="dropdown active">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Raw materials  <span class="caret"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity "></span>   <i class="text-secondary fa fa-truck fa-lg" aria-hidden="true" style="float:right"></i></a>
-					<ul class="dropdown-menu forAnimate" role="menu">
+					<ul class="dropdown-menu  back" role="menu" >
 						<li><a href="#" data-toggle="modal" data-target="#add_raw_material">Register new  <i class="fa fa-plus-square fa-lg" style="float:right" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
 
@@ -106,7 +106,7 @@
 
 
 					</a>
-					<ul class="dropdown-menu forAnimate" role="menu">
+					<ul class="dropdown-menu forAnimate back" role="menu">
 						<li><a href="#" id="register_product_click" data-toggle="modal" data-target="#register-product">Register product   <i class="fa fa-plus-square fa-lg" style="float:right" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
 						<li><a href="{% url 'product_listing' %}">Product List  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
@@ -125,7 +125,7 @@
 					<!-- sell area starts here -->
 					<li class="dropdown active" >
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales Area <span class="caret"></span>  <i class="fa fa-balance-scale fa-lg" aria-hidden="true"></i></a>
-					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+					<ul class="dropdown-menu forAnimate text-primary back" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#add_saleman">Add Saleman <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
 						<li><a href="{% url 'saleman_list' %}">Saleman list  <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
@@ -146,7 +146,7 @@
 					<li class="dropdown active">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Employee Area <span class="caret"></span>  
 					<i class="fa fa-child fa-lg" aria-hidden="true"></i> </a>
-					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+					<ul class="dropdown-menu forAnimate text-primary back" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#employee_register">Register Employee  <i class="fa fa-user-plus fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
 						<li><a href="{% url 'employee_list' %}">Employee list   <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
@@ -165,7 +165,7 @@
 					<!-- external production costs starts here-->
 					<li class="dropdown active">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">External Cost <span class="caret"></span>   <i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
-					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+					<ul class="dropdown-menu forAnimate text-primary back" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#add_external_cost">Add New Cost    <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
 						<li><a href="{% url 'external_cost_listing' %}">Cost list    <i class="fa fa-list-ol fa-lg" aria-hidden="true"></i></a></li>
@@ -187,7 +187,7 @@
 						<!-- others cost starts here-->
 					<li class="dropdown active">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Extra cost <span class="caret"></span> <i class="fa fa-money fa-lg" aria-hidden="true"></i></a>
-					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
+					<ul class="dropdown-menu forAnimate text-primary back" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#cost_modal">Add new  <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
 						<li><a href="{% url 'extra_cost_history' %}">Cost history <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
