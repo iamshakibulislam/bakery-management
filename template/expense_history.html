@@ -11,22 +11,22 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4   col-md-offset-2" >
-			<div class="well bg-dark" style="background-color: grey;color:white;text-align: center;">External Items Stock History</div>
-			<form class="form-inline" style="margin: 0px" method="post" action="{% url 'stock_history_search' %}">   {% csrf_token %}
+			<div class="well bg-dark" style="background-color: grey;color:white;text-align: center;">Expense Stock History</div>
+			<form class="form-inline" style="margin: 0px" method="post" action="{% url 'expense_history_search' %}">   {% csrf_token %}
 				<div class="form-group" style="margin:0px">
 				<label style="margin:0px" for="date">
 					From:
 
 				</label>
-				<input type="date" name="fromdate_external" id="fromdate_external" class="form-control" style="margin: 0px">
+				<input type="date" name="fromdate_expense" id="fromdate_expense" class="form-control" style="margin: 0px">
 				</div>
 				<div class="form-group">
 				<label for="date">
 					To    
 
 				</label>
-				<input type="date" name="todate_external" class="form-control" id="todate_external" style="margin-left: 23px">
-				<button type="submit" class="btn btn-success text-center font-weight-bold" id="searchbuttonexternal">Search</button>
+				<input type="date" name="todate_expense" class="form-control" id="todate_expense" style="margin-left: 23px">
+				<button type="submit" class="btn btn-success text-center font-weight-bold" id="searchbuttonexternalnai">Search</button>
 
 
 			</div>

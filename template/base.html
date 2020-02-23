@@ -1,4 +1,6 @@
  
+
+
 {% load static %}
 
 
@@ -172,7 +174,11 @@
 						<li class="divider"></li>
 						<li><a href="{% url 'stock_external_cost' %}">Stock Items   <i class="fa fa-archive fa-lg" aria-hidden="true"></i></a></li> 
 						<li class="divider"></li>
-						<li><a href="external_stock_history.html">stock history   <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+						<li><a href="{% url 'stock_history' %}">stock history   <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+						<li class="divider"></li>
+						
+						<li><a href="{% url 'expense_history' %}">expense history   <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+
 					</ul>
 
 						<!--external production cost ends there-->
@@ -184,7 +190,7 @@
 					<ul class="dropdown-menu forAnimate text-primary" role="menu" style="color:white">
 						<li><a href="#" data-toggle="modal" data-target="#cost_modal">Add new  <i class="fa fa-plus-circle fa-lg" aria-hidden="true"></i></a></li>
 						<li class="divider"></li>
-						<li><a href="cost_history.html">Cost history <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
+						<li><a href="{% url 'extra_cost_history' %}">Cost history <i class="fa fa-book fa-lg" aria-hidden="true" style="float:right"></i></a></li>
 						<li class="divider"></li>
 					</ul>
 						
@@ -583,12 +589,12 @@
 
       	<div class="form-group " style="display: inline">
   <label for="usr">Name:</label>
-  <input type="text" class="form-control" id="expense_cost_name" autocomplete="off"  style="width:50%">
+  <input type="text" class="form-control" id="extra_cost_name" autocomplete="off"  style="width:50%">
   
    <label for="usr">cost(tk):</label>
     <input type="number" class="form-control" id="extra_cost_price" style="width:90px">
     <label for="usr"></label>
-    <button class="btn  btn-danger" type="submit" class="form-control" id="expense_submit_button">Add</button>
+    <button class="btn  btn-danger" type="submit" class="form-control" id="extra_cost_submit_button">Add</button>
 </div>
 <label for="pwd"></label>
 </div>

@@ -37,12 +37,19 @@ def register(request):
 		return JsonResponse({'status':'ok'})
 
 def raw_material_listing(request):
+	main=[]
+	product=[]
 	json=[]
 	if request.method=="GET":
 		allobj=raw_material_list.objects.all()
 		for x in allobj:
 			json.append({'item':x.item})
-		return JsonResponse(json,safe=False)
+		for pro in product_list.objects.all():
+			product.append({'product':pro.name})
+		main.append(json)
+		main.append(product)
+
+		return JsonResponse(main,safe=False)
 
 
 

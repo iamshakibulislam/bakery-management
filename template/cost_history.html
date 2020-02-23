@@ -1,7 +1,9 @@
+{% extends 'base.html' %}
+
+{% load static %}
 
 
-
-
+{% block content %}
 
 
 
@@ -11,27 +13,27 @@
 	<div class="row">
 		<div class="col-md-4   col-md-offset-2" >
 			<div class="well bg-dark" style="background-color: grey;color:white;text-align: center;">Extra Cost History</div>
-			<div class="form-inline" style="margin: 0px">
+			<form class="form-inline" style="margin: 0px" method="get" action="{% url 'extra_cost_search' %}">
 				<div class="form-group" style="margin:0px">
 				<label style="margin:0px" for="date">
 					From:
 
 				</label>
-				<input type="date" name="from" id="from" class="form-control" style="margin: 0px">
+				<input type="date" name="fromdate_extracost" id="fromdate_extracost" class="form-control" style="margin: 0px">
 				</div>
 				<div class="form-group">
 				<label for="date">
 					To    
 
 				</label>
-				<input type="date" name="to" class="form-control " style="margin-left: 23px">
-				<button type="submit" class="btn btn-success text-center font-weight-bold" id="search">Search</button>
+				<input type="date" name="todate_extracost" class="form-control" id="todate_extracost" style="margin-left: 23px">
+				<button type="submit" class="btn btn-success text-center font-weight-bold" id="searchbuttonextracost">Search</button>
 
 
 			</div>
 			
 				
-			</div>
+			</form>
 
 
 
@@ -44,24 +46,23 @@
 			        <th style="width:100px">Date</th>
 			        <th style="width: 90px">Cost Title</th>
 			        <th style="width:80px">amount</th>
+			        <th>action</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="extra_cost_list">
+			    	{% for cost_list in cost_history %}
 			      <tr>
-			        <td>11-12-20</td>
-			        <td>lakri</td>
-			        <td>26</td>
+			        <td>{{cost_list.date}}</td>
+			        <td>{{cost_list.name}}</td>
+			        <td>{{cost_list.cost}}</td>
+			        <td>
+			        	<costedit><a href="#" data-toggle="modal" cost-id="{{cost_list.id}}" data-target="#update_cost">
+			         	<img src="{% static 'img/edit.png' %}" height="25px" width="25px" ></a> </costedit>      
+			         	 <costdel><a href="#" cost-id="{{cost_list.id}}"> <img src=" {% static 'img/delete.png' %}" height="25x" width="25px" /></a></costdel>
+			        </td>
 			      </tr>
-			      <tr>
-			        <td>22-12-20</td>
-			        <td>polypack</td>
-			        <td>50</td>
-			      </tr>
-			      <tr>
-			        <td>04-12-20</td>
-			        <td>tel </td>
-			      <td>09</td>
-			      </tr>
+			     
+			     {% endfor %}
 			    </tbody>
 			  </table>
 
@@ -74,3 +75,49 @@
 
 </div>
 
+<!-- modal for updating history of cost-->
+
+
+<div id="update_cost" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="btn btn-default" id="closerawmaterialupdatemodal" style="float:right" data-dismiss="modal">Close</button>
+        <h4 class="modal-title">Update Extra Cost History</h4>
+      </div>
+      <div class="modal-body">
+
+       <div class="form-inline">
+       	{% csrf_token %}
+
+      	<div class="form-group " style="display: inline">
+  <label for="usr">Cost Name:</label>
+  <input type="text" class="form-control" autocomplete="off" id="cost_name_update" style="width:50%">
+   <label for="usr">Amount:</label>
+    <input type="number" class="form-control" id="cost_amount_update" style="width:90px">
+</div>
+<label for="pwd"></label>
+</div>
+
+
+        
+
+
+
+      </div>
+      <div class="modal-footer">
+       <div class="form-group">
+       	<input type="hidden" name="id_cost" value="">
+       	{% csrf_token %}
+
+  <button  class="form-control btn btn-success" id="cost_update_button" >Update</button>
+</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock content %}

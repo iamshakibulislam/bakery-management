@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from extra_cost.models import *
 from django.http import JsonResponse
 
 def add_new(request):
@@ -153,3 +154,44 @@ def expense_item(request):
 	expense_table.save()
 
 	return JsonResponse({'status':'ok'})
+
+
+
+def stock_history(request):
+	hist=external_cost_stock_history.objects.all()[:20]
+
+	return render(request,'external_stock_history.html',{'hist':hist})
+
+
+def stock_history_search(request):
+	fromdate=request.POST['fromdate_external']
+	todate=request.POST['todate_external']
+
+	hist=external_cost_stock_history.objects.filter(date__range=[fromdate,todate])
+
+	return render(request,'external_stock_history.html',{'hist':hist})
+
+
+def expense_history(request):
+	hist=external_cost_expense.objects.all()[:15]
+	return render(request,'expense_history.html',{'hist':hist})
+
+def expense_history_search(request):
+	fromdate=request.POST['fromdate_expense']
+	todate=request.POST['todate_expense']
+
+	hist=external_cost_expense.objects.filter(date__range=[fromdate,todate])
+
+	return render(request,'expense_history.html',{'hist':hist})
+
+
+def extra_cost_add(request):
+	if request.method=='GET':
+		name=request.GET['name']
+		price=request.GET['price']
+
+		inst=extra_cost()
+		inst.name=name
+		inst.cost=float(price)
+		inst.save()
+		return JsonResponse({'status':'ok'})
