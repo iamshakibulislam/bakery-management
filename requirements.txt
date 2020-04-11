@@ -1,0 +1,5 @@
+1.mysql-connector
+2.mysql database
+
+if you want to change database to postgres you need:
+1.psycopg2-binary
