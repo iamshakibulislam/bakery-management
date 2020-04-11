@@ -30,5 +30,6 @@ class product_stock_history(models.Model):
 	date=models.DateField(auto_now=False,auto_now_add=False,default=today)
 	name=models.ForeignKey(product_list,on_delete=models.CASCADE)
 	quantity=models.IntegerField()
+	raw_mat_value=models.FloatField(max_length=30,null=False,default=0)
 
 

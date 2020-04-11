@@ -10,10 +10,10 @@
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <p class="display-3" style="text-align:center;margin-top:17px">মোট বাকি</p>
+      <p class="display-3" style="text-align:center;margin-top:17px">কাঁচামাল </br> স্টক</p>
     </div>
     <div class="flip-card-back">
-      <h1>8469389</h1> 
+      <h1>{{raw_stock}}</h1> 
       
     </div>
   </div>
@@ -22,10 +22,10 @@
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <p class="display-3" style="text-align:center;margin-top:17px">মোট বাকি</p>
+      <p class="display-3" style="text-align:center;margin-top:17px"> উৎপাদন  </br>   স্টক</p>
     </div>
     <div class="flip-card-back">
-      <h1>8469389</h1> 
+      <h1>{{product_Stock}}</h1> 
       
     </div>
   </div>
@@ -34,10 +34,10 @@
 	<div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <p class="display-3" style="text-align:center;margin-top:17px">মোট বাকি</p>
+      <p class="display-3" style="text-align:center;margin-top:17px"> অন্যান্য উপাদান   স্টক</p>
     </div>
     <div class="flip-card-back">
-      <h1>8469389</h1> 
+      <h1>{{external_stock}}</h1> 
       
     </div>
   </div>
@@ -47,10 +47,10 @@
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <p class="display-3" style="text-align:center;margin-top:17px">মোট বাকি</p>
+      <p class="display-3" style="text-align:center;margin-top:17px">সেলসম্যান বাকি</p>
     </div>
     <div class="flip-card-back">
-      <h1>8469389</h1> 
+      <h1>{{saleman_due}}</h1> 
       
     </div>
   </div>
@@ -62,10 +62,30 @@
 <div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
+      <p class="display-3" style="text-align:center;margin-top:17px">খুচরা বাকি</p>
+    </div>
+    <div class="flip-card-back">
+      <h1>{{retail_due}}</h1> 
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div> <!--flex container closed-->
+<!--devider-->
+</br>
+
+<div class="flex-container">
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
       <p class="display-3" style="text-align:center;margin-top:17px">মোট বাকি</p>
     </div>
     <div class="flip-card-back">
-      <h1>8469389</h1> 
+      <h1>{{total_due}}</h1> 
       
     </div>
   </div>
@@ -77,7 +97,129 @@
 <!--devider-->
 
 
+
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <p class="display-3" style="text-align:center;margin-top:17px">আজকের বিবিধ </br> খরচ</p>
+    </div>
+    <div class="flip-card-back">
+      <h1>{{todays_extra_cost}}</h1> 
+      
+    </div>
+  </div>
 </div>
+
+
+
+
+
+
+<!--devider-->
+
+
+
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <p class="display-3" style="text-align:center;margin-top:17px">কর্মচারি বেতন বকেয়া</p>
+    </div>
+    <div class="flip-card-back">
+      <h1>{{employee_due}}</h1> 
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div> <!--end of second flex container-->
+
+
+
+
+<!--starting third flex container-->
+
+<div class="flex-container">
+<div class="flip-card" >
+<div class="flip-card-front" style="background-color:#003366">
+<div class="form-inline">
+	<div class="form-group">
+		<label style="font-size:32px" for="fromdatehome">
+			from:
+		</label>
+		<input type="date" id="fromdatehome" class="form-control">
+
+	</div>
+
+	<div class="form-group">
+		<label style="font-size:32px;margin-left:39px" for="todatehome">
+			to:
+		</label>
+		<input type="date" id="todatehome" class="form-control">
+
+	</div>
+
+
+	<div class="form-group">
+		
+		<input type="button" style="margin-left:180px" id="seeprofit" class="btn btn-success" value="see profit">
+
+	</div>
+
+</div>
+
+
+
+
+
+
+</div>
+</div>
+
+
+<!--starting seeing profit function-->
+
+
+<div class="flip-card" >
+  <div class="flip-card-inner" id="profitloss">
+    <div class="flip-card-front" style="background-color:#804000">
+      <p class="display-3" style="text-align:center;margin-top:17px">লাভ/লস হিসাব</p>
+    </div>
+    <div class="flip-card-back">
+      <h1 id="profitshow">0.00</h1> 
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <p class="display-3" style="text-align:center;margin-top:17px">আজকের জমা</p>
+    </div>
+    <div class="flip-card-back">
+      <h1>{{todaysdeposit}}</h1> 
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!---->
+</div>
+<!-- end of third flex container-->
+
 </div>
 
 

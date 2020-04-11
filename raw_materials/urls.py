@@ -10,5 +10,5 @@ urlpatterns = [
     path('delete',views.deleterawmaterial,name='delete_raw_material'),
     path('stock',views.stock,name="raw_material_stock"),
     path('stock/update',views.stock_update,name="stock_update"),
-    path('stock/history',views.stock_history,name='stock_history')
+    path('stock/history',views.stock_history,name='raw_stock_history')
 ]

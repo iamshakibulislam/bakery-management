@@ -133,7 +133,7 @@ def stock(request):
 
 	if request.method=="POST":
 		item=request.POST['item']
-		quantity=request.POST['quantity']
+		quantity=float(request.POST['quantity'])
 		json=[]
 		
 
@@ -142,8 +142,18 @@ def stock(request):
 			sel_from_list=product_list.objects.get(name=item)
 			all_mat_for_this=product_rawmaterial.objects.filter(product_id=sel_from_list.id)
 			details=all_mat_for_this.values_list('id','material_id','quantity')
+
+			mat_value=0
 			for i,mat,quan in details:
 				sel_list=raw_material_list.objects.get(id=mat)
+
+
+				price=float(sel_list.price)
+				need=(quan/1000)
+				q=(price*need*quantity)
+				mat_value=mat_value+q
+
+
 
 				
 				sel_raw_stock=raw_material_stock.objects.get(item_id=mat)
@@ -161,6 +171,7 @@ def stock(request):
 			hist=product_stock_history()
 			hist.name=sel_from_list
 			hist.quantity=int(quantity)
+			hist.raw_mat_value=mat_value
 			hist.save()
 
 			all_obj=product_stock.objects.all()
@@ -174,8 +185,15 @@ def stock(request):
 			sel_from_list=product_list.objects.get(name=item)
 			all_mat_for_this=product_rawmaterial.objects.filter(product_id=sel_from_list.id)
 			details=all_mat_for_this.values_list('id','material_id','quantity')
+			mat_value=0
 			for i,mat,quan in details:
 				sel_list=raw_material_list.objects.get(id=mat)
+
+
+				price=float(sel_list.price)
+				need=(quan/1000)
+				q=(price*need*quantity)
+				mat_value=mat_value+q
 
 				
 				sel_raw_stock=raw_material_stock.objects.get(item_id=mat)
@@ -194,6 +212,7 @@ def stock(request):
 			hist=product_stock_history()
 			hist.name=sel_from_list
 			hist.quantity=int(quantity)
+			hist.raw_mat_value=mat_value
 			hist.save()
 			all_obj=product_stock.objects.all()
 			for x in all_obj:

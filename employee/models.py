@@ -11,7 +11,7 @@ class employee_list(models.Model):
 
 class attendence(models.Model):
 	date=models.DateField(auto_now_add=False,auto_now=False,default=today)
-	name=models.ForeignKey(employee_list,on_delete=models.SET_NULL,null=True)
+	name=models.ForeignKey(employee_list,on_delete=models.CASCADE,null=True)
 	status=models.BooleanField()
 	add_salary=models.FloatField()
 

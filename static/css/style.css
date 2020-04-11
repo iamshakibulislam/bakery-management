@@ -217,8 +217,9 @@
 
 .flip-card {
   background-color: transparent;
-  width: 200px;
-  height: 100px;
+  width: 320px;
+  height: 140px;
+  margin-right:6px;
   perspective: 1000px;
 }
 
@@ -246,8 +247,10 @@
 
 .flip-card-front {
   background-color: #331a00;
-  color:white;
-  color: black;
+
+  color: white;
+  font-size: 35px;
+  text-align: center;
 }
 
 .flip-card-back {
@@ -257,3 +260,6 @@
 }
 
 /* end of adding flipcards */
+
+
+.flex-container{display: flex;flex-direction: row;justify-content: flex-around;border-bottom-style: dotted;}

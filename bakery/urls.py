@@ -26,5 +26,7 @@ urlpatterns = [
     path('sales/',include('sales.urls')),
     path('employee/',include('employee.urls')),
     path('external_cost/',include('external_cost.urls')),
-    path('extra_cost/',include('extra_cost.urls'))
+    path('extra_cost/',include('extra_cost.urls')),
+    path('login',views.login,name='login'),
+    path('profitsearch/',views.profitsearch,name='profitsearch')
 ]
